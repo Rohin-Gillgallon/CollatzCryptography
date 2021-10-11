@@ -4,76 +4,6 @@
 #include <sstream>
 #include "LoginSystem.h"
 
-
-	void LoginSystem::reg()
-	{
-		std::string username, password;
-
-		std::cout << "Select a username: ";
-		std::cin >> username;
-		std::cout << "Select a password: ";
-		std::cin >> password;
-		std::hash<std::string> Hash;
-
-		std::ofstream file;
-		file.open("login.txt");
-		file << Hash(username) << " " << Hash(password) << "\n";
-		file.close();
-
-		system();
-	};
-
-	bool LoginSystem::Authorise()
-	{
-		std::string username, password, un, pw;
-
-		std::cout << "Enter username: ";
-		std::cin >> username;
-		std::cout << "Enter password: ";
-		std::cin >> password;
-		std::hash<std::string> Hash;
-
-		std::ifstream read("login.txt");
-		std::string details[2];
-		for (int i = 0; i < 2; i++)
-		{
-			read >> details[i];
-		}
-
-		if (details[0] == std::to_string(Hash(username)) && details[1] == std::to_string(Hash(password)))
-		{
-			std::cout << "True\n";
-			return true;
-		}
-		else
-		{
-			std::cout << "False\n";
-			return false;
-		}
-	}
-
-	void LoginSystem::login()
-	{
-		bool status = Authorise();
-		if (!status)
-		{
-			std::cout << "False Login!\n";
-			passwordcount++;
-
-			if (passwordcount == 3)
-			{
-				std::cout << "Locked out! Too many failed attempts!";
-					return;
-			}
-			login();
-		}
-		else
-		{
-			std::cout << "Successfully logged in!\n";
-		}
-	}
-
-
 	void LoginSystem::system()
 	{
 		int choice;
@@ -95,3 +25,70 @@
 		}
 	}
 
+	void LoginSystem::reg()
+	{
+		std::string username, password;
+
+		std::cout << "Select a username: ";
+		std::cin >> username;
+		std::cout << "Select a password: ";
+		std::cin >> password;
+		std::hash<std::string> Hash;
+
+		std::ofstream file;
+		file.open("login.txt");
+		file << username << " " << Hash(password) << "\n";
+		file.close();
+
+		system();
+	};
+
+	void LoginSystem::ReadData()
+	{
+		std::ifstream read("login.txt");
+		for (int i = 0; i < 2; i++)
+		{
+			read >> details[i];
+		}
+	}
+
+	void LoginSystem::login()
+	{
+		ReadData();
+		//Username();
+		std::cout << "Enter username: ";
+		std::cin >> username;
+		if (details[0] == username)
+		{
+			std::cout << "Valid Username, please now enter your password!\n";
+			Password();
+			return;
+		}
+		std::cout << "Failure, non-valid username, please try again!\n";
+		login();
+	}
+
+	void LoginSystem::Password()
+	{
+		std::cout << "Enter password: ";
+		std::cin >> password;
+		bool status = (details[1] == std::to_string(Hash(password)));
+	
+		if (!status)
+		{
+			std::cout << "False Login! ";
+			passwordcount++;
+			std::cout << 3 - passwordcount << " attempts remaining!\n";
+			if (passwordcount == 3)
+			{
+				std::cout << "Locked out! Too many failed attempts!\n";
+				return;
+			}
+			Password();
+		}
+		else
+		{
+			std::cout << "Successfully logged in!\n";
+			return;
+		}
+	}
