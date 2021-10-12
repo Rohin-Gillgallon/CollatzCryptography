@@ -1,4 +1,9 @@
 #pragma once
+#include <iostream>
+#include <sstream>
+#include <functional>
+#include <algorithm>
+#include <vector>
 
 class LoginSystem : public Collatz
 {
@@ -18,5 +23,6 @@ public:
 	LoginSystem() {};
 	~LoginSystem() {};
 	void system();
+	friend std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
 };
 
