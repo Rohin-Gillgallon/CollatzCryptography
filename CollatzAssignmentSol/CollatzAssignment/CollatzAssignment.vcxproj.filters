@@ -34,6 +34,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="login.txt" />
+    <Text Include="password.txt" />
   </ItemGroup>
 </Project>

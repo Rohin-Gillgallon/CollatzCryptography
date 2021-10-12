@@ -156,7 +156,7 @@
     <ClInclude Include="src\LoginSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="login.txt">
+    <Text Include="password.txt">
       <DeploymentContent>true</DeploymentContent>
     </Text>
   </ItemGroup>

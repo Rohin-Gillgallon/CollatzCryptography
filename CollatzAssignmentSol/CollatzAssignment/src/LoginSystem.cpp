@@ -92,7 +92,7 @@
 		std::string ecpass = encrypt(password, toString);
 
 		std::ofstream file;
-		file.open("login.txt");
+		file.open("password.txt");
 		file << username << " " << ecpass << "\n";
 		file.close();
 
@@ -116,7 +116,7 @@
 
 	void LoginSystem::ReadData()
 	{
-		std::ifstream read("login.txt");
+		std::ifstream read("password.txt");
 		for (int i = 0; i < 2; i++)
 		{
 			read >> details[i];

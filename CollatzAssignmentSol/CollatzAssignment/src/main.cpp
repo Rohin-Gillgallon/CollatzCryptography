@@ -8,6 +8,12 @@
 
 using namespace std;
 
+int main()
+{
+	LoginSystem ls;
+	ls.system();
+	system("pause");
+}
 /*std::string encrypt(std::string word, const std::function<std::string(vector<int>)>& toString)
 {
 	vector<int> encword(word.size());
@@ -53,15 +59,3 @@ using namespace std;
 	std::string encpass = hidden.str();
 	return encpass;
 };*/
-
-int main()
-{
-	LoginSystem ls;
-	ls.system();
-	system("pause");
-	/*std::string word = "frog";
-	auto q = encrypt(word, toString);
-	cout << q << "\n";*/
-
-	//system("pause");
-}
