@@ -8,14 +8,8 @@
 
 using namespace std;
 
-int main()
-{
-	LoginSystem ls;
-	ls.system();
-	system("pause");
-}
-/*std::string encrypt(std::string word, const std::function<std::string(vector<int>)>& toString)
-{
+std::string encrypt(std::string word, const std::function<std::string(vector<int>)>& toString);
+/* {
 	vector<int> encword(word.size());
 	int offset = 0;
 	for (int i = 0; i < word.size(); i++)
@@ -46,16 +40,31 @@ int main()
 	std::string password;
 	password = toString(encword);
 	return password;
-}
+}*/
 
-/*auto toString = [&](std::vector<int> encword) {
+auto toString = [&](std::vector<int> encword)
+{
 	std::stringstream hidden;
-	for (size_t int i = 0; i < encword.size(); ++i)
+	for (size_t i = 0; i < encword.size(); ++i)
 	{
-		if (i != 0)
-			hidden << ",";
+		/*if (i != 0)
+			hidden << ",";*/
 		hidden << encword[i];
 	}
 	std::string encpass = hidden.str();
 	return encpass;
-};*/
+};
+
+int main()
+{
+	LoginSystem ls;
+	ls.system();
+	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
+	std::string sent = {"A friend to all is a friend to none"};
+	cout << encrypt(sent, toString) << "\n";
+	/*for (int i = 0; i < all.size(); i++)
+	{
+		cout << all[i] << ' ' << encrypt(sent + all[i], toString) << "\n";
+	}*/
+	system("pause");
+}
