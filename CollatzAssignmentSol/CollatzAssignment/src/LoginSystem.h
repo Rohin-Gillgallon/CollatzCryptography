@@ -1,6 +1,6 @@
 #pragma once
 
-class LoginSystem
+class LoginSystem : public Collatz
 {
 private:
 	std::string username, password, un, pw;
@@ -16,7 +16,7 @@ private:
 
 public:
 	LoginSystem() {};
-	virtual ~LoginSystem() {};
+	~LoginSystem() {};
 	void system();
 };
 

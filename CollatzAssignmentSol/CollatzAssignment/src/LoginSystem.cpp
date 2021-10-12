@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include "Collatz.h"
 #include "LoginSystem.h"
 
 	void LoginSystem::system()
@@ -9,7 +10,6 @@
 		int choice;
 		std::cout << "Register: 1\nLogin: 2\nEnter choice... ";
 		std::cin >> choice;
-
 		if (choice == 1)
 		{
 			reg();
@@ -17,10 +17,17 @@
 		else if (choice == 2)
 		{
 			login();
+			return;
 		}
 		else
 		{
-			std::cout << "Error! Please enter 1 or 2" << std::endl;
+			while (std::cin.fail()) {
+				std::cout << "Error! Please enter 1 or 2!\n";
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				system();
+			}
+			std::cout << "\n";
 			system();
 		}
 	}
@@ -43,6 +50,21 @@
 		system();
 	};
 
+	void LoginSystem::login()
+	{
+		ReadData();
+		std::cout << "Enter username: ";
+		std::cin >> username;
+		if (details[0] == username)
+		{
+			std::cout << "Valid username, please now enter your password!\n";
+			Password();
+			return;
+		}
+		std::cout << "Failure, non-valid username, please try again!\n";
+		login();
+	}
+
 	void LoginSystem::ReadData()
 	{
 		std::ifstream read("login.txt");
@@ -50,22 +72,6 @@
 		{
 			read >> details[i];
 		}
-	}
-
-	void LoginSystem::login()
-	{
-		ReadData();
-		//Username();
-		std::cout << "Enter username: ";
-		std::cin >> username;
-		if (details[0] == username)
-		{
-			std::cout << "Valid Username, please now enter your password!\n";
-			Password();
-			return;
-		}
-		std::cout << "Failure, non-valid username, please try again!\n";
-		login();
 	}
 
 	void LoginSystem::Password()
