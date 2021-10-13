@@ -155,11 +155,6 @@
     <ClInclude Include="src\Collatz.h" />
     <ClInclude Include="src\LoginSystem.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="password.txt">
-      <DeploymentContent>true</DeploymentContent>
-    </Text>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -4,7 +4,6 @@
 #include <sstream>
 #include <vector>
 #include <functional>
-#include <algorithm>
 #include "Collatz.h"
 #include "LoginSystem.h"
 
@@ -91,20 +90,31 @@
 		std::cin >> password;
 		std::string ecpass = encrypt(password, toString);
 
-		std::ofstream file;
-		file.open("password.txt");
-		file << username << " " << ecpass << "\n";
-		file.close();
+		if (std::fstream{ "password.txt" })
+		{
+			std::fstream file;
+			std::cout << "file exists\n";
+			file.open("password.txt", std::ios_base::app);
+			file << username << " " << ecpass << "\n";
+			file.close();
+		}
+		else
+		{
+			std::ofstream file;
+			file.open("password.txt");
+			file << username << " " << ecpass << "\n";
+			file.close();
+			std::cerr << "File being created as one did not exist\n";
+		}
 
 		system();
 	};
 
 	void LoginSystem::login()
 	{
-		ReadData();
 		std::cout << "Enter username: ";
 		std::cin >> username;
-		if (details[0] == username)
+		if (ReadData(username))
 		{
 			std::cout << "Valid username, please now enter your password!\n";
 			Password();
@@ -114,13 +124,28 @@
 		login();
 	}
 
-	void LoginSystem::ReadData()
+	bool LoginSystem::ReadData(std::string& username)
 	{
+		std::string line;
 		std::ifstream read("password.txt");
-		for (int i = 0; i < 2; i++)
+		while (std::getline(read, line, ' '))
 		{
-			read >> details[i];
+			if (line.find(username) != std::string::npos)
+			{
+				if (username == line)
+				{
+					details[0] = username;
+					read >> details[1];
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		read.ignore(256, '\n');
 		}
+		return false;
 	}
 
 	void LoginSystem::Password()

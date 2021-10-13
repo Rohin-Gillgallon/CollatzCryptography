@@ -13,10 +13,8 @@ private:
 	std::hash<std::string> Hash;
 	int passwordcount = 0;
 	void reg();
-	//bool Authorise();
 	void login();
-	void ReadData();
-	//void Username();
+	bool ReadData(std::string& username);
 	void Password();
 
 public:
