@@ -21,6 +21,6 @@ public:
 	LoginSystem() {};
 	~LoginSystem() {};
 	void system();
-	friend std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
+	//friend std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
 };
 

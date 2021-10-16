@@ -5,11 +5,11 @@
 #include <algorithm>
 #include "Collatz.h"
 #include "LoginSystem.h"
+#include "StrengthAnalysis.h"
 
 using namespace std;
 
 std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
-
 
 auto toString = [&](std::vector<int> encword)
 {
@@ -26,8 +26,11 @@ auto toString = [&](std::vector<int> encword)
 
 int main()
 {
-	LoginSystem ls;
-	ls.system();
+	// LoginSystem ls;
+	//ls.system();
+	StrengthAnalysis sa;
+	sa.Gen1();
+	sa.Gen2();
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};
 	cout << encrypt(sent, toString) << "\n";

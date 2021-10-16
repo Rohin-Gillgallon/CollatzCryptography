@@ -7,8 +7,8 @@
 #include "Collatz.h"
 #include "LoginSystem.h"
 
-	std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString)
-	{
+std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
+	/*{
 		std::vector<int> encword(word.size());
 		int offset = 0;
 		for (int i = 0; i < word.size(); i++)
@@ -39,7 +39,7 @@
 		std::string password;
 		password = toString(encword);
 		return password;
-	}
+	}*/
 
 	auto toString = [&](std::vector<int> encword) {
 		std::stringstream hidden;
@@ -75,8 +75,8 @@
 				std::cin.ignore(256, '\n');
 				system();
 			}
-			std::cout << "\n";
-			system();
+			/*std::cout << "\n";
+			system();*/
 		}
 	}
 
@@ -106,7 +106,6 @@
 			file.close();
 			std::cerr << "File being created as one did not exist\n";
 		}
-
 		system();
 	};
 
