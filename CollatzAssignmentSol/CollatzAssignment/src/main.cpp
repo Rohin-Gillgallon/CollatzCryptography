@@ -6,6 +6,7 @@
 #include "Collatz.h"
 #include "LoginSystem.h"
 #include "StrengthAnalysis.h"
+#include "Generate.h"
 
 using namespace std;
 
@@ -26,11 +27,11 @@ auto toString = [&](std::vector<int> encword)
 
 int main()
 {
-	// LoginSystem ls;
-	//ls.system();
-	StrengthAnalysis sa;
-	sa.Gen1();
-	sa.Gen2();
+	LoginSystem ls;
+	ls.system();
+	//Generate g;
+	//g.Gen1();
+	//g.Gen2();
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};
 	cout << encrypt(sent, toString) << "\n";

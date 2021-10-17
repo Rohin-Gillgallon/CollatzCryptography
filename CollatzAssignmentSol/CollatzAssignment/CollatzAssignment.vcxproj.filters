@@ -24,6 +24,9 @@
     <ClCompile Include="src\Collatz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Generate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\StrengthAnalysis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Collatz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Generate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\StrengthAnalysis.h">

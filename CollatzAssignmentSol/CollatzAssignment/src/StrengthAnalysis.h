@@ -10,16 +10,19 @@
 
 class StrengthAnalysis : public Collatz
 {
-private:
+protected:
 	void swap(char& a, char& b);
 	void randomize(char arr[], int n);
-	void write(std::string& word);
 	std::string FirstGroup();
 	std::string SecondGroup();
+	template <typename T>
+	T random(T low, T high)
+	{
+		srand((int)std::time(0) * rand() * (int)std::time(NULL));
+		T randNum = (rand() % (high + 1 - low)) + low;
+		return randNum;
+	};
 public:
-	void Gen1();
-	void Gen2();
 	StrengthAnalysis() {};
-	~StrengthAnalysis() {};
-
+	virtual ~StrengthAnalysis() {};
 };

@@ -150,11 +150,13 @@
     <ClCompile Include="src\Collatz.cpp" />
     <ClCompile Include="src\LoginSystem.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Generate.cpp" />
     <ClCompile Include="src\StrengthAnalysis.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collatz.h" />
     <ClInclude Include="src\LoginSystem.h" />
+    <ClInclude Include="src\Generate.h" />
     <ClInclude Include="src\StrengthAnalysis.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
