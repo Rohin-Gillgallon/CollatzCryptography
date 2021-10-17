@@ -13,8 +13,6 @@ class StrengthAnalysis : public Collatz
 protected:
 	void swap(char& a, char& b);
 	void randomize(char arr[], int n);
-	std::string FirstGroup();
-	std::string SecondGroup();
 	template <typename T>
 	T random(T low, T high)
 	{
@@ -23,6 +21,8 @@ protected:
 		return randNum;
 	};
 public:
+	std::string FirstGroup();
+	std::string SecondGroup();
 	StrengthAnalysis() {};
 	virtual ~StrengthAnalysis() {};
 };

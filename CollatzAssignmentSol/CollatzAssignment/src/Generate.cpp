@@ -9,13 +9,13 @@
 #include "Collatz.h"
 #include "StrengthAnalysis.h"
 #include "Generate.h"
-
+#include "Decryption.h"
 
 std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
 
-auto toString = [&](std::vector<int> encword) {
+static auto toString = [&](std::vector<int> encword) {
 	std::stringstream hidden;
-	for (/*size_t*/ int i = 0; i < encword.size(); ++i)
+	for (size_t i = 0; i < encword.size(); ++i)
 	{
 		/*if (i != 0)
 			hidden << ",";*/
