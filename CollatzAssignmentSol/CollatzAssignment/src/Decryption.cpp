@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <functional>
 #include <vector>
+#include <chrono>
 #include "Collatz.h"
 #include "StrengthAnalysis.h"
 #include "Decryption.h"
@@ -82,7 +83,7 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 				item = group[j];
 				item = (item < 0) ? item += 256 : item;
 				prefix += (char)item;
-			}
+			} 
 			encpref = encrypt(prefix, toString);
 			if (!example.starts_with(encpref))
 				prefix.pop_back();
@@ -90,18 +91,18 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 			if (example == encpref)
 			{
 				//std::cout << prefix << "\n";
-				std::cout << i + 1 << ' ' << prefix << std::endl;
+				//std::cout << i + 1 << ' ' << prefix << std::endl;
 				return true;
 			}
 		}
 		size++;
 		if (!example.starts_with(encpref))
 		{
-			std::cout << error << "\n";
+			//std::cout << error << "\n";
 			return false;
 		}
 	}
-	std::cout << error << "\n";
+	//std::cout << error << "\n";
 	return false;
 };
 
@@ -110,26 +111,35 @@ void DecryptPasswords::DecryptCount(int start, int end)
 	std::string line;
 	std::ifstream read("passwordtest.txt");
 	float count = 0;
+	std::chrono::steady_clock::time_point startTimer, middleTimer, endTimer;
+	std::chrono::duration<float> duration;
 	if (read.is_open())
 	{
+		startTimer = std::chrono::high_resolution_clock::now();
 		for (int i = start; std::getline(read, line) && i < end + 1; i++)
 		{
 			if (i == start)
 			{
 				int groupno = (i < 10001) ? 1 : 2;
 				std::string passwords = (groupno == 1) ? FirstGroup() : SecondGroup();
-				std::cout << i << ' ';
+				//std::cout << i << ' ';
 				if (decrypt(line, passwords, groupno))
 					count++;
 			}
 			if (i == 10000)
 			{
 				std::cout << "The decryption percentage for the first 10000 passwords is: " << (count/10000) * 100 << "%\n";
+				middleTimer = std::chrono::high_resolution_clock::now();
+				duration = middleTimer - startTimer;
+				std::cout << "The decryption of these passwords took " << duration.count() << "s " << "\n";
 				count = 0;
 			}
 			if (i == 20000)
 			{
 				std::cout << "The decryption percentage for the second 10000 passwords is: " << (count / 10000) * 100 << "%\n";
+				endTimer = std::chrono::high_resolution_clock::now();
+				duration = endTimer - middleTimer ;
+				std::cout << "The decryption of these passwords took " << duration.count() << "s " << "\n";
 				return;
 			}
 			start++;

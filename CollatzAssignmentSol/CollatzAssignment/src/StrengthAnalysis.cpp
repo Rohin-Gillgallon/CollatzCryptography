@@ -19,11 +19,11 @@ void StrengthAnalysis::swap(char& a, char& b)
 	b = temp;
 };
 
-void StrengthAnalysis::randomize(char arr[], int n)
+void StrengthAnalysis::randomize(char arr[], int size)
 {
 
 	std::srand((int)std::time(0) * rand());
-	for (int i = n - 1; i > 0; i--)
+	for (int i = size - 1; i > 0; i--)
 	{
 		int j = std::rand() % (i + 1);
 		swap(arr[i], arr[j]);
@@ -58,7 +58,7 @@ std::string StrengthAnalysis::SecondGroup()
 	char group2[256];
 	for (int i = 0; i < 256; i++)
 	{
-		group2[i - 32] = (char)i;
+		group2[i] = (char)i;
 		//std::cout << i << ' ' << (char)i << std::endl;
 	}
 
