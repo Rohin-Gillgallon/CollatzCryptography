@@ -21,7 +21,7 @@ protected:
 		return randNum;
 	};
 public:
-	std::string FirstGroup();
+	virtual std::string FirstGroup();
 	std::string SecondGroup();
 	StrengthAnalysis() {};
 	virtual ~StrengthAnalysis() {};

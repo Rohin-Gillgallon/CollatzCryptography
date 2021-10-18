@@ -59,84 +59,83 @@ static auto toString = [&](std::vector<int> encword) {
 	return encpass;
 };
 
+std::string DecryptPasswords::FirstGroup()
+{
+	return "abcdefghijklmnopqrstuvwxyz";
+}
+
 bool DecryptPasswords::decrypt(std::string& example, std::string& group, int groupno)
 {
 	int size = 1;
 	int item;
-	int noletter = (groupno == 1) ? 27 : 134; //27;
+	int noletter = (groupno == 1) ? 27 : 256; // 134;
 	std::string prefix;
 	std::string error = "error";
 	std::string encpref;
 	//std::string all = { "abcdefghijklmnopqrstuvwxyz" };
 	for (int i = 0; i < example.length(); i++)
 	{
-		for (int j = 0; j < noletter/*all.size()*/; j++)
-		{//system("pause");
+		for (int j = 0; j < noletter; j++)
+		{
 			while (prefix.length() < size)
 			{
-				item = group[j];//(noletter == 134) ? (char)(j + 32) : (char)(j + 97);
+				item = group[j];
 				item = (item < 0) ? item += 256 : item;
-				prefix += (char)item;//all[j];//;//example.starts_with(prefix) ? std::cout << "yes\n" : std::cout << "no\n";
+				prefix += (char)item;
 			}
 			encpref = encrypt(prefix, toString);
-			//std::cout << prefix << std::endl;
 			if (!example.starts_with(encpref))
 				prefix.pop_back();
 
 			if (example == encpref)
 			{
 				//std::cout << prefix << "\n";
+				std::cout << i + 1 << ' ' << prefix << std::endl;
 				return true;
 			}
 		}
 		size++;
 		if (!example.starts_with(encpref))
 		{
-			//std::cout << error << "\n";
-			return false; // (example == encpref) ? prefix : error;
+			std::cout << error << "\n";
+			return false;
 		}
 	}
 	std::cout << error << "\n";
 	return false;
 };
 
-int DecryptPasswords::DecryptCount(std::string& passwords)
+void DecryptPasswords::DecryptCount(int start, int end)
 {
 	std::string line;
 	std::ifstream read("passwordtest.txt");
-	int lineno = 1;
-	int count = 0;
+	float count = 0;
 	if (read.is_open())
 	{
-		for (int i = lineno; std::getline(read, line) && i < 1001; i++)
+		for (int i = start; std::getline(read, line) && i < end + 1; i++)
 		{
-			if (i == lineno)
+			if (i == start)
 			{
-				if (decrypt(line, passwords, 2))
+				int groupno = (i < 10001) ? 1 : 2;
+				std::string passwords = (groupno == 1) ? FirstGroup() : SecondGroup();
+				std::cout << i << ' ';
+				if (decrypt(line, passwords, groupno))
 					count++;
-				//std::cout << i << ' ' << decryptline.length() << ' ' << decryptline << std::endl;
 			}
-			lineno++;
+			if (i == 10000)
+			{
+				std::cout << "The decryption percentage for the first 10000 passwords is: " << (count/10000) * 100 << "%\n";
+				count = 0;
+			}
+			if (i == 20000)
+			{
+				std::cout << "The decryption percentage for the second 10000 passwords is: " << (count / 10000) * 100 << "%\n";
+				return;
+			}
+			start++;
 		}
 		read.close();
 	}
 	else std::cout << "Can not open the file";
-	return count;
+	return;
 };
-
-/*int main()
-{
-	std::string decryptline;
-	std::string line = SecondGroup();
-	int group = DecryptCount(line);//SecondGroup();
-	std::cout << "The number of passwords decrypted is: " << group << std::endl;
-	/*std::string sent = {"raarbxlbvaxaljjamygaahsfftwabl"};
-	std::string encsent = encrypt(sent, toString);
-	//std::string example = {"138765419879"};
-	std::cout << encsent << std::endl;
-	//std::cout << prefix << std::endl;
-	//std::string decsent = decrypt(sent);
-	//std::cout << "The password is " << decsent << std::endl;
-	system("pause");
-	return 0;
-}*/

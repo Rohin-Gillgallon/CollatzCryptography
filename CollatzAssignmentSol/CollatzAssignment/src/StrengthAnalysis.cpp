@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -54,8 +55,8 @@ std::string StrengthAnalysis::FirstGroup()
 
 std::string StrengthAnalysis::SecondGroup()
 {
-	char group2[134];
-	for (int i = 32; i < 166; i++)
+	char group2[256];
+	for (int i = 0; i < 256; i++)
 	{
 		group2[i - 32] = (char)i;
 		//std::cout << i << ' ' << (char)i << std::endl;
@@ -67,7 +68,7 @@ std::string StrengthAnalysis::SecondGroup()
 	//std::cout << "n= " << n << std::endl;);
 	//random_shuffle(&group2[0], &group2[134]);
 	std::string words2;
-	for (int i = 0; i < 134; i++)
+	for (int i = 0; i < 256; i++)
 	{
 		words2 += group2[i];
 	}

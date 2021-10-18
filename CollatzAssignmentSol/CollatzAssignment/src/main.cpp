@@ -30,13 +30,12 @@ int main()
 {
 	//LoginSystem ls;
 	//ls.system();
-	//Generate g;
-	//g.Gen1();
-	//g.Gen2();
+	/*Generate g;
+	g.Gen1();
+	g.Gen2();*/
 	DecryptPasswords Dec;
-	std::string line = Dec.SecondGroup();
-	int count = Dec.DecryptCount(line);
-	std::cout << "The number of passwords decrypted is: " << count << std::endl;
+	//std::string line = Dec.SecondGroup();
+	Dec.DecryptCount(1, 20000);
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};
 	cout << encrypt(sent, toString) << "\n";
