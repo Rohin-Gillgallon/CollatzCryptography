@@ -9,6 +9,7 @@ class Collatz
 public:
 	Collatz();
 	virtual ~Collatz();
-	void checkfile(std::string filname);
 	friend std::string encrypt(std::string& word, const std::function<std::string(std::vector<int>)>& toString);
+protected:
+	void checkfile(std::string filname);
 };

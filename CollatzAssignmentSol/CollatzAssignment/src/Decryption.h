@@ -13,9 +13,10 @@ class DecryptPasswords : public StrengthAnalysis
 {
 private:
 	bool decrypt(std::string& example, std::string& group, int groupno);
-public:
 	void DecryptCount(int start, int end);
 	std::string FirstGroup();
+public:
+	void system();
 	DecryptPasswords() {};
 	~DecryptPasswords() {};
 };

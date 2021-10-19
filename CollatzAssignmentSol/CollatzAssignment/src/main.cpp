@@ -28,11 +28,10 @@ int main()
 {
 	//LoginSystem ls;
 	//ls.system();
-	/*Generate g;
-	g.Gen1();
-	g.Gen2();*/
+	Generate g;
+	g.system();
 	DecryptPasswords Dec;
-	Dec.DecryptCount(1, 20000);
+	Dec.system();
 
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};

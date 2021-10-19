@@ -79,7 +79,7 @@ void DecryptPasswords::DecryptCount(int start, int end)
 			count++;
 		if (i == (groupno * 10000))
 		{
-			std::cout << "The decryption percentage for the passwords in group " << groupno << " up to " << groupno << "0000 is: " << (count / 10000) * 100 << "% \n";
+			std::cout << "Group " << groupno << " done.\nThe decryption percentage for the passwords in group " << groupno << " up to " << groupno << "0000 is: " << (count / 10000) * 100 << "% \n";
 			Time(startTimer);
 			startTimer = std::chrono::high_resolution_clock::now();
 			count = 0;
@@ -89,3 +89,9 @@ void DecryptPasswords::DecryptCount(int start, int end)
 	read.close();
 	return;
 };
+
+void DecryptPasswords::system()
+{
+	std::cout << "Please wait whilst the passwords are being decrypted....\n";
+	DecryptCount(1, 20000);
+}

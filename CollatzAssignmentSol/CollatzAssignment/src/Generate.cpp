@@ -31,6 +31,7 @@ void Generate::write(std::string& word)
 		file.close();
 };
 
+
 void Generate::Gen1()
 {
 	std::string line;
@@ -78,3 +79,10 @@ void Generate::Gen2()
 	}
 	return;
 };
+
+void Generate::system()
+{
+	std::cout << "Please wait while the passcodes are being generated...\n";
+	Gen1();
+	Gen2();
+}
