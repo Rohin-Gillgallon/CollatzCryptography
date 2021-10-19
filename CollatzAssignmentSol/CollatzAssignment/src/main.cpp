@@ -36,10 +36,14 @@ int main()
 
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};
-	cout << encrypt(sent, toString) << "\n";
-	/*for (int i = 0; i < all.size(); i++)
+	std::string code = "27322810313331033910211452912207344136146925461033281533271031012815108114101";
+	for (int i = 0; i < all.size(); i++)
 	{
 		cout << all[i] << ' ' << encrypt(sent + all[i], toString) << "\n";
-	}*/
+	}
+	if (encrypt(sent, toString) == code)
+		cout << "TRUE!\n";
+	else
+		cout << "FALSE!\n";*/
 	system("pause");
 }
