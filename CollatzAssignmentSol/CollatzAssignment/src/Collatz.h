@@ -10,5 +10,5 @@ class Collatz
 public:
 	Collatz();
 	virtual ~Collatz();
-	friend std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
+	friend std::string encrypt(std::string& word, const std::function<std::string(std::vector<int>)>& toString);
 };

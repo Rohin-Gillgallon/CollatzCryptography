@@ -7,7 +7,7 @@
 #include "Collatz.h"
 #include "LoginSystem.h"
 
-std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString);
+std::string encrypt(std::string& word, const std::function<std::string(std::vector<int>)>& toString);
 	/*{
 		std::vector<int> encword(word.size());
 		int offset = 0;

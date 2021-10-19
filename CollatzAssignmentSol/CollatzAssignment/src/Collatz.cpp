@@ -4,7 +4,7 @@
 Collatz::Collatz() {}
 Collatz::~Collatz() {}
 
-std::string encrypt(std::string word, const std::function<std::string(std::vector<int>)>& toString)
+std::string encrypt(std::string& word, const std::function<std::string(std::vector<int>)>& toString)
 {
 	std::vector<signed int> encword(word.size());
 	int offset = 0;
