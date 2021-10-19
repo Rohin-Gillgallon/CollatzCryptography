@@ -56,17 +56,18 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 	return false;
 };
 
-void Time(std::chrono::steady_clock::time_point start)
+static auto Time = [&](std::chrono::steady_clock::time_point start)
 {
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> duration;
 	duration = end - start;
 	std::cout << "The decryption of these passwords took " << duration.count() << "s " << "\n";
-}
+};
 
 void DecryptPasswords::DecryptCount(int start, int end)
 {
 	std::string line;
+	checkfile("passwordtest.txt");
 	std::ifstream read("passwordtest.txt");
 	float count = 0;
 	auto startTimer = std::chrono::high_resolution_clock::now();

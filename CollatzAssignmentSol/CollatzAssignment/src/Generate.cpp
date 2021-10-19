@@ -15,7 +15,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 
 static auto toString = [&](std::vector<int> encword) {
 	std::stringstream hidden;
-	for (size_t i = 0; i < encword.size(); ++i)
+	for (int i = 0; i < encword.size(); ++i)
 	{
 		hidden << encword[i];
 	}
@@ -25,20 +25,10 @@ static auto toString = [&](std::vector<int> encword) {
 
 void Generate::write(std::string& word)
 {
-	if (std::fstream{ "passwordtest.txt" })
-	{
-		std::fstream file;
+		std::ofstream file;
 		file.open("passwordtest.txt", std::ios_base::app);
 		file << encrypt(word, toString) << "\n";
 		file.close();
-	}
-	else
-	{
-		std::ofstream file;
-		file.open("passwordtest.txt");
-		file << encrypt(word, toString) << "\n";
-		file.close();
-	}
 };
 
 void Generate::Gen1()
@@ -81,7 +71,6 @@ void Generate::Gen2()
 			}
 			std::cout << line.length() << ' ' << j + 1 << ' ' << line << std::endl;
 			write(line);
-			//line.pop_back();
 			line.erase();
 			radd = SecondGroup();
 		}

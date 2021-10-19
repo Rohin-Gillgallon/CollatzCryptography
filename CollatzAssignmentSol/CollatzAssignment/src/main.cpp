@@ -18,8 +18,6 @@ static auto toString = [&](std::vector<int> encword)
 	std::stringstream hidden;
 	for (int i = 0; i < encword.size(); ++i)
 	{
-		/*if (i != 0)
-			hidden << ",";*/
 		hidden << encword[i];
 	}
 	std::string encpass = hidden.str();

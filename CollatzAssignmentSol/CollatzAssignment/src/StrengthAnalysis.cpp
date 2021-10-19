@@ -40,7 +40,6 @@ std::string StrengthAnalysis::FirstGroup()
 	{
 		char item = random(97, 122);
 		*GrpPtr = item;
-		//std::cout << item << std::endl;
 		GrpPtr++;
 	}
 
@@ -48,7 +47,6 @@ std::string StrengthAnalysis::FirstGroup()
 	for (int i = 0; i < 10; i++)
 	{
 		words.push_back(group[i]);
-		//std::cout << group[i];
 	}
 	return words;
 };
@@ -59,14 +57,11 @@ std::string StrengthAnalysis::SecondGroup()
 	for (int i = 0; i < 256; i++)
 	{
 		group2[i] = (char)i;
-		//std::cout << i << ' ' << (char)i << std::endl;
 	}
 
 	srand((int)std::time(0) * rand());
 	for (int i = 0; i < 7; i++)
 		randomize(group2, sizeof(group2) / sizeof(group2[0]));
-	//std::cout << "n= " << n << std::endl;);
-	//random_shuffle(&group2[0], &group2[134]);
 	std::string words2;
 	for (int i = 0; i < 256; i++)
 	{
