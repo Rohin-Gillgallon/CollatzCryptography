@@ -12,7 +12,7 @@
 
 using namespace std;
 
-std::string encrypt(std::string& word, const std::function<std::string(std::vector<int>)>& toString);
+/*std::string encrypt(std::string& word, const std::function<std::string(std::vector<int>)>& toString);
 
 static auto toString = [&](std::vector<int> encword)
 {
@@ -23,7 +23,7 @@ static auto toString = [&](std::vector<int> encword)
 	}
 	std::string encpass = hidden.str();
 	return encpass;
-};
+};*/
 
 int main()
 {
