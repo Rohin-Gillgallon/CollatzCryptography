@@ -118,7 +118,7 @@ void StrengthAnalysis::System()
 			Generate g;
 			g.System();
 			std::string cont;
-			std::cout << "Do you want to decrypt these passwords:\nyes or no?\n";
+			std::cout << "Do you want to discover these passwords:\nyes or no?\n";
 			std::cin >> cont;
 			if (cont == "yes" || cont == "y")
 			{
