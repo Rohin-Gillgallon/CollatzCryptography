@@ -40,7 +40,6 @@ std::string DecryptPasswords::FirstGroup()
 		words += group[i];
 	}
 	return words;
-	//return "abcdefghijklmnopqrstuvwxyz";
 }
 
 bool DecryptPasswords::decrypt(std::string& example, std::string& group, int groupno)

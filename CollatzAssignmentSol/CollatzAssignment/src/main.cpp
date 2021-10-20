@@ -1,8 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <sstream>
-#include <functional>
-#include <algorithm>
 #include <memory>
 #include "Collatz.h"
 #include "LoginSystem.h"

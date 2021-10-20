@@ -22,15 +22,21 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 	void LoginSystem::System()
 	{
 		int choice;
-		std::cout << "Enter choice:\n1. Register\n2. Login\n";
+		std::cout << "Enter choice:\n1. Register\n2. Login\n3. Back\n";
 		std::cin >> choice;
 		if (choice == 1)
 		{
 			reg();
+			return;
 		}
 		else if (choice == 2)
 		{
 			login();
+			return;
+		}
+		else if (choice == 3)
+		{
+			std::cout << "Returning to previous menu\n";
 			return;
 		}
 		else
@@ -40,6 +46,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 				std::cin.clear();
 				std::cin.ignore(256, '\n');
 				System();
+				return;
 			}
 		}
 	}
@@ -49,6 +56,12 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 		std::string username, password;
 		std::cout << "Select a username: ";
 		std::cin >> username;
+		if (ReadData(username))
+		{
+			std::cout << "Sorry this username already exists please choose another\n";
+			reg();
+			return;
+		}
 		std::cout << "Select a password: ";
 		std::cin >> password;
 		std::string ecpass = encrypt(password, toString);
@@ -70,6 +83,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 			std::cerr << "File being created as one did not exist\n";
 		}
 		System();
+		return;
 	};
 
 	void LoginSystem::login()
