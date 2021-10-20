@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <any>
 #include "Collatz.h"
+#include "LoginSystem.h"
+#include "StrengthAnalysis.h"
 
 Collatz::Collatz() {}
 Collatz::~Collatz() {}
@@ -37,7 +40,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 	return password;
 };
 
-void Collatz::checkfile(std::string filename)
+bool Collatz::checkfile(std::string filename)
 {
 	try
 	{
@@ -49,5 +52,59 @@ void Collatz::checkfile(std::string filename)
 	catch (bool& f)
 	{
 		std::cout << "The file required for this method does not exist!\n";
+		return false;
 	}
+	return true;
 };
+
+void Collatz::System()
+{
+	std::any var = true;
+	if (std::any_cast<bool>(var))
+	{
+		int choice;
+		std::string select = "Please select:\n";
+		std::cout << select;
+		var = 1;
+		std::cout << std::any_cast<int>(var);
+		std::string login = ". Login System\n";
+		std::cout << login;
+		var = 2;
+		std::cout << std::any_cast<int>(var);
+		std::string psa = ". Password Strength Analysis\n";
+		std::cout << psa;
+		var = 3;
+		std::cout << std::any_cast<int>(var);
+		std::string exit = ". Exit\n";
+		std::cout << exit;
+		
+		std::cin >> choice;
+		if (choice == 1)
+		{
+			LoginSystem ls;
+			ls.System();
+			std::cout << "\n";
+			System();
+		}
+		else if (choice == 2)
+		{
+			StrengthAnalysis sa;
+			sa.System();
+			std::cout << "\n";
+			System();
+		}
+		else if (choice == 3)
+		{
+			var = false;
+		}
+		else
+		{
+			std::cout << "Invalid number input, please try again choosing either 1 or 2\n";
+			system("pause");
+			std::cout << "\n";
+			System();
+		}
+	}
+	else
+		return;
+}

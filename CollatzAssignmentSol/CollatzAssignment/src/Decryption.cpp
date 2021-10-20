@@ -7,7 +7,6 @@
 #include <functional>
 #include <vector>
 #include <chrono>
-#include <any>
 #include "Collatz.h"
 #include "StrengthAnalysis.h"
 #include "Decryption.h"
@@ -26,13 +25,28 @@ static auto toString = [&](std::vector<int> encword) {
 
 std::string DecryptPasswords::FirstGroup()
 {
-	return "abcdefghijklmnopqrstuvwxyz";
+	char group[26];
+	for (int i = 0; i < 26; i++)
+	{
+		group[i] = (char)i + 97;
+	}
+
+	srand((int)std::time(0) * rand());
+	for (int i = 0; i < 7; i++)
+		randomize(group, sizeof(group) / sizeof(group[0]));
+	std::string words;
+	for (int i = 0; i < 26; i++)
+	{
+		words += group[i];
+	}
+	return words;
+	//return "abcdefghijklmnopqrstuvwxyz";
 }
 
 bool DecryptPasswords::decrypt(std::string& example, std::string& group, int groupno)
 {
 	int size = 1,  item, noletter = (groupno == 1) ? 27 : 256;
-	std::string prefix, encpref, error = "error";
+	std::string prefix, encpref;
 	for (int i = 0; i < example.length(); i++)
 	{
 		for (int j = 0; j < noletter; j++)
@@ -61,37 +75,40 @@ static auto Time = [&](std::chrono::steady_clock::time_point start)
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> duration;
 	duration = end - start;
-	std::cout << "The decryption of these passwords took " << duration.count() << "s " << "\n";
+	std::cout << "The discovery of these passwords took " << duration.count() << "s " << "\n";
 };
 
-void DecryptPasswords::DecryptCount(int start, int end)
+void DecryptPasswords::DecryptCount()
 {
 	std::string line;
-	checkfile("passwordtest.txt");
-	std::ifstream read("passwordtest.txt");
-	float count = 0;
-	auto startTimer = std::chrono::high_resolution_clock::now();
-	for (int i = start; std::getline(read, line) && i < end + 1; i++)
+	if (checkfile("passwordtest.txt"))
 	{
-		int groupno = (i < 10001) ? 1 : 2;
-		std::string passwords = (groupno == 1) ? FirstGroup() : SecondGroup();
-		if (decrypt(line, passwords, groupno))
-			count++;
-		if (i == (groupno * 10000))
+		std::ifstream read("passwordtest.txt");
+		int count = 0;
+		auto startTimer = std::chrono::high_resolution_clock::now();
+		for (int i = 1; std::getline(read, line) && i <=20000; i++)
 		{
-			std::cout << "Group " << groupno << " done.\nThe decryption percentage for the passwords in group " << groupno << " up to " << groupno << "0000 is: " << (count / 10000) * 100 << "% \n";
-			Time(startTimer);
-			startTimer = std::chrono::high_resolution_clock::now();
-			count = 0;
-			if (groupno == 2) return;
+			int groupno = (i < 10001) ? 1 : 2;
+			std::string passwords = (groupno == 1) ? FirstGroup() : SecondGroup();
+			if (decrypt(line, passwords, groupno))
+				count++;
+			if (i == (groupno * 10000))
+			{
+				std::cout << "Group " << groupno << " done.\nThe percentage for the passwords discovered in group " << groupno << " up to " << groupno << "0000 is: " << ((float)count / 10000) * 100 << "%\n";
+				Time(startTimer);
+				startTimer = std::chrono::high_resolution_clock::now();
+				count = 0;
+				if (groupno == 2) return;
+			}
 		}
+		read.close();
+		return;
 	}
-	read.close();
-	return;
+	else return;
 };
 
-void DecryptPasswords::system()
+void DecryptPasswords::System()
 {
-	std::cout << "Please wait whilst the passwords are being decrypted....\n";
-	DecryptCount(1, 20000);
+	std::cout << "Please wait whilst the passwords are being discovered...\n";
+	DecryptCount();
 }

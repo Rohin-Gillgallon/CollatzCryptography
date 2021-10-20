@@ -21,7 +21,6 @@ void StrengthAnalysis::swap(char& a, char& b)
 
 void StrengthAnalysis::randomize(char arr[], int size)
 {
-
 	std::srand((int)std::time(0) * rand());
 	for (int i = size - 1; i > 0; i--)
 	{
@@ -69,3 +68,79 @@ std::string StrengthAnalysis::SecondGroup()
 	}
 	return words2;
 };
+
+void StrengthAnalysis::System()
+{
+	int choice;
+	std::cout << "Now please select:\n1. Password Generation\n2. Password Discovery\n";
+	std::cin >> choice;
+	if (choice == 1)
+	{
+		std::ifstream file;
+		file.open("passwordtest.txt");
+		if (file)
+		{
+			std::string del;
+			std::cout << "A file containing passwords already exists\nWould you like to clear the file and generate new passwords?\nEnter yes or no...\n";
+			std::cin >> del;
+			if (del == "yes" || del == "y")
+			{
+				std::ofstream delfile;
+				delfile.open("passwordtest.txt", std::ofstream::out | std::ofstream::trunc);
+				delfile.close();
+				Generate g;
+				g.System();
+				std::string cont;
+				std::cout << "Do you want to discover these passwords:\nyes or no?";
+				std::cin >> cont;
+				if (cont == "yes" || cont == "y")
+				{
+					DecryptPasswords Dec;
+					Dec.System();
+				}
+				else if (cont == "no" || cont == "n")
+				{
+					return;
+				}
+				else
+				{
+					std::cout << "Invalid entry, returning to previous menu\n";
+					return;
+				}
+			} 
+			else
+			{
+				System();
+			}
+		}
+		else
+		{
+			Generate g;
+			g.System();
+			std::string cont;
+			std::cout << "Do you want to decrypt these passwords:\nyes or no?\n";
+			std::cin >> cont;
+			if (cont == "yes" || cont == "y")
+			{
+				DecryptPasswords Dec;
+				Dec.System();
+			}
+			else if (cont == "no" || cont == "n")
+			{
+				return;
+			}
+			else
+			{
+				std::cout << "Invalid entry, returning to previous menu\n";
+				return;
+			}
+		}
+	}
+	if (choice == 2)
+	{
+		DecryptPasswords Dec;
+		Dec.System();
+		std::cout << "\nReturning to previous menu...\n";
+		return;
+	}
+}

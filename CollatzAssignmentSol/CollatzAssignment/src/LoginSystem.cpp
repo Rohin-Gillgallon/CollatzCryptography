@@ -19,10 +19,10 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 		return encpass;
 	};
 
-	void LoginSystem::system()
+	void LoginSystem::System()
 	{
 		int choice;
-		std::cout << "Register: 1\nLogin: 2\nEnter choice... ";
+		std::cout << "Enter choice:\n1. Register\n2. Login\n";
 		std::cin >> choice;
 		if (choice == 1)
 		{
@@ -39,7 +39,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 				std::cout << "Error! Please enter 1 or 2!\n";
 				std::cin.clear();
 				std::cin.ignore(256, '\n');
-				system();
+				System();
 			}
 		}
 	}
@@ -47,7 +47,6 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 	void LoginSystem::reg()
 	{
 		std::string username, password;
-
 		std::cout << "Select a username: ";
 		std::cin >> username;
 		std::cout << "Select a password: ";
@@ -70,27 +69,30 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 			file.close();
 			std::cerr << "File being created as one did not exist\n";
 		}
-		system();
+		System();
 	};
 
 	void LoginSystem::login()
 	{
-		std::cout << "Enter username: ";
-		std::cin >> username;
-		if (ReadData(username))
+		if (checkfile("password.txt"))
 		{
-			std::cout << "Valid username, please now enter your password!\n";
-			Password();
-			return;
+			std::cout << "Enter username: ";
+			std::cin >> username;
+			if (ReadData(username))
+			{
+				std::cout << "Valid username, please now enter your password:\n";
+				Password();
+				return;
+			}
+			std::cout << "Failure, non-valid username, please try again!\n";
+			login();
 		}
-		std::cout << "Failure, non-valid username, please try again!\n";
-		login();
+		else return;
 	}
 
 	bool LoginSystem::ReadData(std::string& username)
 	{
 		std::string line;
-		checkfile("password.txt");
 		std::ifstream read("password.txt");
 		while (std::getline(read, line, ' '))
 		{

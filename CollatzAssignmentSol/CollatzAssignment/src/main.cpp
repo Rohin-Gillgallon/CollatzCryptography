@@ -3,6 +3,7 @@
 #include <sstream>
 #include <functional>
 #include <algorithm>
+#include <memory>
 #include "Collatz.h"
 #include "LoginSystem.h"
 #include "StrengthAnalysis.h"
@@ -26,12 +27,8 @@ static auto toString = [&](std::vector<int> encword)
 
 int main()
 {
-	//LoginSystem ls;
-	//ls.system();
-	Generate g;
-	g.system();
-	DecryptPasswords Dec;
-	Dec.system();
+	unique_ptr<Collatz> C = make_unique<Collatz>();
+	C->System();
 
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};
@@ -44,5 +41,5 @@ int main()
 		cout << "TRUE!\n";
 	else
 		cout << "FALSE!\n";*/
-	system("pause");
+	//system("pause");
 }

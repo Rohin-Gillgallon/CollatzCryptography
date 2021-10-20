@@ -16,7 +16,7 @@ private:
 	void Gen1();
 	void Gen2();
 public:
-	void system();
+	void System();
 	Generate() {};
 	~Generate() {};
 };

@@ -80,7 +80,7 @@ void Generate::Gen2()
 	return;
 };
 
-void Generate::system()
+void Generate::System()
 {
 	std::cout << "Please wait while the passcodes are being generated...\n";
 	Gen1();

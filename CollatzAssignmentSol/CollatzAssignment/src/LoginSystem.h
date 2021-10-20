@@ -20,6 +20,6 @@ private:
 public:
 	LoginSystem() {};
 	~LoginSystem() {};
-	void system();
+	void System();
 };
 

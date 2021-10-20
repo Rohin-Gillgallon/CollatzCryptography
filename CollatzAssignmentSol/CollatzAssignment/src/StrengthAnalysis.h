@@ -20,9 +20,10 @@ protected:
 		T randNum = (rand() % (high + 1 - low)) + low;
 		return randNum;
 	};
-public:
 	virtual std::string FirstGroup();
 	std::string SecondGroup();
+public:
+	virtual void System();
 	StrengthAnalysis() {};
 	virtual ~StrengthAnalysis() {};
 };
