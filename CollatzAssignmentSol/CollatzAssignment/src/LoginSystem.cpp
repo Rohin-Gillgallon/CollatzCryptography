@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <functional>
+#include <cctype>
 #include "Collatz.h"
 #include "LoginSystem.h"
 
