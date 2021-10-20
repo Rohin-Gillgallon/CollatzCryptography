@@ -74,7 +74,7 @@ static auto Time = [&](std::chrono::steady_clock::time_point start)
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> duration;
 	duration = end - start;
-	std::cout << "The discovery of these passwords took " << duration.count() << "s " << "\n";
+	std::cout << "The discovery of these passwords took " << duration.count()/100.00f << "s " << "\n" << "\n";
 };
 
 void DecryptPasswords::DecryptCount()
@@ -83,21 +83,23 @@ void DecryptPasswords::DecryptCount()
 	if (checkfile("passwordtest.txt"))
 	{
 		std::ifstream read("passwordtest.txt");
+		int from = 0;
 		int count = 0;
 		auto startTimer = std::chrono::high_resolution_clock::now();
-		for (int i = 1; std::getline(read, line) && i <=20000; i++)
+		for (int i = 1; std::getline(read, line) && i <= 20000; i++)
 		{
 			int groupno = (i < 10001) ? 1 : 2;
 			std::string passwords = (groupno == 1) ? FirstGroup() : SecondGroup();
 			if (decrypt(line, passwords, groupno))
 				count++;
-			if (i == (groupno * 10000))
+			if (i % 100 == 0) 
 			{
-				std::cout << "Group " << groupno << " done.\nThe percentage for the passwords discovered in group " << groupno << " up to " << groupno << "0000 is: " << ((float)count / 10000) * 100 << "%\n";
-				Time(startTimer);
-				startTimer = std::chrono::high_resolution_clock::now();
-				count = 0;
-				if (groupno == 2) return;
+
+					std::cout << "The percentage of the passwords not discovered in group " << groupno << " from "<< from << " up to " << i << " is: " <<(float)100.00f - ((float)count / 100) * 100 << " % \n";
+					from += 100;
+					Time(startTimer);
+					startTimer = std::chrono::high_resolution_clock::now();
+					count = 0;
 			}
 		}
 		read.close();

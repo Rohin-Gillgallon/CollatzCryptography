@@ -69,7 +69,6 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 		if (std::fstream{ "password.txt" })
 		{
 			std::fstream file;
-			std::cout << "file exists\n";
 			file.open("password.txt", std::ios_base::app);
 			file << username << " " << ecpass << "\n";
 			file.close();
