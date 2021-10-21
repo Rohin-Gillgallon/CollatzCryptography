@@ -51,7 +51,7 @@ bool Collatz::checkfile(std::string filename)
 	}
 	catch (bool& f)
 	{
-		std::cout << "The file required for this method does not exist!\n";
+		std::cout << "\nThe file required for this method does not exist!\n";
 		return false;
 	}
 	return true;

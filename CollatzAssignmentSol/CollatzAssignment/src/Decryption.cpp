@@ -72,7 +72,7 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 	return false;
 };
 
-static auto Time = [&](std::chrono::steady_clock::time_point start)
+inline auto Time = [&](std::chrono::steady_clock::time_point start)
 {
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> duration;
