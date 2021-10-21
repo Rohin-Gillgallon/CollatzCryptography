@@ -12,7 +12,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 
 	auto toString = [&](std::vector<int> encword) {
 		std::stringstream hidden;
-		for (/*size_t*/ int i = 0; i < encword.size(); ++i)
+		for (int i = 0; i < encword.size(); ++i)
 		{
 			hidden << encword[i];
 		}
@@ -60,7 +60,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 		if (ReadData(username))
 		{
 			std::cout << "Sorry this username already exists please choose another\n";
-			reg();
+			System();
 			return;
 		}
 		std::cout << "Select a password: ";

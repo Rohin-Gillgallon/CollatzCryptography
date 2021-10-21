@@ -59,8 +59,11 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 			encpref = encrypt(prefix, toString);
 			if (!example.starts_with(encpref))
 				prefix.pop_back();
-			if (example == encpref)
+			 if (example == encpref)
+			{
+				//std::cout << prefix << "\n";
 				return true;
+			}
 		}
 		size++;
 		if (!example.starts_with(encpref))
