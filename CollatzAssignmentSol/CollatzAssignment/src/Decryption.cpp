@@ -85,21 +85,24 @@ void DecryptPasswords::DecryptCount()
 		std::ifstream read("passwordtest.txt");
 		int from = 1;
 		int count = 0;
+		int length = 1;
 		auto startTimer = std::chrono::high_resolution_clock::now();
 		for (int i = 1; std::getline(read, line) && i <= 20000; i++)
 		{
 			int groupno = (i < 10001) ? 1 : 2;
-			std::string passwords = (groupno == 1) ? FirstGroup() : SecondGroup();
-			if (decrypt(line, passwords, groupno))
+			std::string group = (groupno == 1) ? FirstGroup() : SecondGroup();
+			if (decrypt(line, group, groupno))
 				count++;
 			if (i % 100 == 0) 
 			{
 
-					std::cout << "The percentage of the passwords not discovered in group " << groupno << " from "<< from << " up to " << i << " is: " <<(float)100.00f - ((float)count / 100.00f) * 100.00f << "%\n";
+					std::cout << "The percentage of the passwords of length " << length << " discovered in group " << groupno << " is: " <<((float)count / 100.00f) * 100.00f << "%\n";
 					from += 100;
+					length++;
 					Time(startTimer);
 					startTimer = std::chrono::high_resolution_clock::now();
 					count = 0;
+					length = (i == 10000) ? 1 : length;
 			}
 		}
 		read.close();
