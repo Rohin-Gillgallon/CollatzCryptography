@@ -65,8 +65,6 @@ int main()
 	/*std::string all = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !\"#$%^&*(){}[];:'@~,<.>//|*-+"};
 	std::string sent = {"A friend to all is a friend to none"};
 	std::string code = "27322810313331033910211452912207344136146925461033281533271031012815108114101";
-	std::string test = "iyicchhohraghoglreliwwchweltgolhhtwhwrgvhrtggohhwtwtaghctsclahwehrvwgowriwwqgcasllggohkiogghrtgggggg";
-	//std::cout << encrypt(test, toString) << "\n";
 	//for (int i = 0; i < 256; i++)
 	//{
 		cout << encrypt(sent, toString) << "\n";

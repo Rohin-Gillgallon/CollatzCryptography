@@ -99,7 +99,7 @@ std::string encrypt(std::string& word, const std::function<std::string(std::vect
 				return;
 			}
 			std::cout << "Failure, non-valid username, please try again!\n";
-			login();
+			System();
 		}
 		else return;
 	}

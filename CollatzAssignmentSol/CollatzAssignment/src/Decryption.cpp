@@ -44,8 +44,8 @@ std::string DecryptPasswords::FirstGroup()
 
 bool DecryptPasswords::decrypt(std::string& example, std::string& group, int groupno)
 {
-	std::ofstream file;
-	file.open("passwordcracked.txt", std::ios_base::app);
+	//std::ofstream file;
+	//file.open("passwordcracked.txt", std::ios_base::app);
 	int size = 1,  item, noletter = (groupno == 1) ? 27 : 256;
 	std::string prefix, encpref;
 	for (int i = 0; i < example.length(); i++)
@@ -64,18 +64,18 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 			 if (example == encpref)
 			{
 				//std::cout << prefix << "\n";
-				file << prefix << "\n";
+				//file << prefix << "\n";
 				return true;
 			}
 		}
 		size++;
 		if (!example.starts_with(encpref))
 		{
-			file << "error\n";
+			//file << "error\n";
 			return false;
 		}
 	}
-	file.close();
+	//file.close();
 	return false;
 };
 
@@ -93,7 +93,6 @@ void DecryptPasswords::DecryptCount()
 	if (checkfile("passwordtest.txt"))
 	{
 		std::ifstream read("passwordtest.txt");
-		int from = 1;
 		int count = 0;
 		int length = 1;
 		auto startTimer = std::chrono::high_resolution_clock::now();
@@ -107,7 +106,6 @@ void DecryptPasswords::DecryptCount()
 			{
 
 					std::cout << "The percentage of the passwords of length " << length << " discovered in group " << groupno << " is: " <<((float)count / 100.00f) * 100.00f << "%\n";
-					from += 100;
 					length++;
 					Time(startTimer);
 					startTimer = std::chrono::high_resolution_clock::now();
