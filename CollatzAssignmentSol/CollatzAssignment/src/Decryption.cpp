@@ -44,6 +44,8 @@ std::string DecryptPasswords::FirstGroup()
 
 bool DecryptPasswords::decrypt(std::string& example, std::string& group, int groupno)
 {
+	std::ofstream file;
+	file.open("passwordcracked.txt", std::ios_base::app);
 	int size = 1,  item, noletter = (groupno == 1) ? 27 : 256;
 	std::string prefix, encpref;
 	for (int i = 0; i < example.length(); i++)
@@ -62,13 +64,18 @@ bool DecryptPasswords::decrypt(std::string& example, std::string& group, int gro
 			 if (example == encpref)
 			{
 				//std::cout << prefix << "\n";
+				file << prefix << "\n";
 				return true;
 			}
 		}
 		size++;
 		if (!example.starts_with(encpref))
+		{
+			file << "error\n";
 			return false;
+		}
 	}
+	file.close();
 	return false;
 };
 
