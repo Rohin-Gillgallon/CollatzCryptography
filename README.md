@@ -1,4 +1,4 @@
-# Collatz Cryptography Suite
+# Collatz Cryptography Project
 
 This repository contains a C++ security application implementing encryption and decryption algorithms based on the Collatz Conjecture. The project applies number theory to password hashing and strength analysis, emphasizing modern programming paradigms and memory safety.
 
